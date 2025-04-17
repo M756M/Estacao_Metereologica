@@ -1,11 +1,12 @@
 from random import random;
+from math import ceil, modf;
 
 class Measurement:
     temperature: float
     relativeMoisture: float
     airSpeed: float
     
-    def __init__(self, temperature = 0, relativeMoisture = 0, airSpeed = 0):
+    def __init__(self, temperature = 0.0, relativeMoisture = 0.0, airSpeed = 0.0):
         self.temperature = temperature or 0
         self.relativeMoisture = relativeMoisture or 0
         self.airSpeed = airSpeed or 0
@@ -38,8 +39,20 @@ class Measurement:
 
             P[i] = Measurement(float(f"{_temperature: .2f}"), float(f"{_relativeMoisture: .2f}"), float(f"{_airSpeed: .2f}"))
         return P
-    
+
 def effectiveTemperature(*measurements: Measurement) -> list[float]:
+    class PrintableList(list):
+        def __str__(self):
+            str = "[\n"
+
+            for i in range(0, len(self), 3):
+                if(len(self) - i < 3):
+                    str += "\u0020"
+                    for j in range(0, len(self) - i): str += f"{self[i + j]}{"" if j == len(self) - i - 1 else ", "}"
+                else: str += f"\u0020{self[i]}, {self[i + 1]}, {self[i + 2]}{"" if i == len(self) - 3 else ",\n"}"
+            return str + "\n]"
+
+   
     V = lambda v: 1/(1.76 + 1.4 * pow(v, 0.75))
     H = lambda h: 1 - h/100
 
@@ -54,4 +67,4 @@ def effectiveTemperature(*measurements: Measurement) -> list[float]:
         37 - (37 - m.temperature)/(0.68 - 0.0014 * m.relativeMoisture + V(m.airSpeed)) - 0.29 * m.temperature * H(m.relativeMoisture) for m in flatMeasurements
     ]
 
-    return result
+    return PrintableList([float(f"{f: .2f}") for f in result])

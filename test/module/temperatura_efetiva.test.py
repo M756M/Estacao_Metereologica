@@ -1,6 +1,6 @@
 import sys;
-sys.path.append("/Users/20231PF.INF_I0007/estacao/src")
+sys.path.append("src")
 
 from temperatura_efetiva import effectiveTemperature, Measurement;
 
-print(effectiveTemperature(Measurement.generate((1, 5), (1, 5), (1, 5))))
+print(effectiveTemperature(Measurement.generate((1, 40), (1, 60), (1, 5))))
