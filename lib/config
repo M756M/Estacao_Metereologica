@@ -1,0 +1,8 @@
+#ifndef CONFIG_PROP_C
+#define CONFIG_PROP_C
+
+extern const char* db_root_path = "~/proj/db";
+
+void db_path(char* filename);
+
+#endif

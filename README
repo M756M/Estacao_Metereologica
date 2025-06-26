@@ -1,0 +1,10 @@
+# Sensores
+
+Eu acho que não vai dar pra usar a média dos dados coletados
+
+- BMP280: Coleta temperatura do ar, umidade relativa e pressão atmosférica
+- DHT22: Coleta temperatura do ar e umidade relativa
+- MPU-6050: Não sei :skull:, mas é um acelerômetro e um giroscópio
+- DS18B20: Coleta temperatura do ar
+- LM393: Coleta a quantidade de chuva
+- HMC5883L: Coleta a intensidade|direção|variação do campo magnético do planeta
